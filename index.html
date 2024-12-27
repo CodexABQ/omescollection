@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover premium fashion and essentials at OME'S COLLECTION. Shop quality Women Abaya, Ankara Fabrics, trendy bags, men's clothing, and more in Hausawa Sabon Titi, Kano.">
+    <meta name="keywords" content="OME'S COLLECTION, fashion store Kano, Women Abaya, Ankara Fabrics, trendy bags, men's clothing, Hausawa Sabon Titi">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://omescollection.com/">
+    <meta property="og:title" content="OME'S COLLECTION - Premium Fashion & Essentials in Kano">
+    <meta property="og:description" content="Discover quality fashion and essentials for men and women. Premium Women Abaya, Ankara Fabrics, trendy bags, and more in Hausawa Sabon Titi, Kano.">
+    <meta property="og:image" content="[Your-Image-URL]">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://omescollection.com/">
+    <meta property="twitter:title" content="OME'S COLLECTION - Premium Fashion & Essentials in Kano">
+    <meta property="twitter:description" content="Discover quality fashion and essentials for men and women. Premium Women Abaya, Ankara Fabrics, trendy bags, and more in Hausawa Sabon Titi, Kano.">
+    <meta property="twitter:image" content="[Your-Image-URL]">
+
+    <title>OME'S COLLECTION - Premium Fashion & Essentials in Kano</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+    <link rel="shortcut icon" href="./img/logo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body, html {
+            overflow: hidden;
+            background: #0f0f0f;
+        }
+
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        #particle-canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .loader-logo {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            perspective: 1000px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .loader-logo svg {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: rotate 3s linear infinite;
+        }
+
+        .loader-text {
+            margin-top: 20px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            letter-spacing: 4px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            border-radius: 10px;
+            animation: loadProgress 2s ease-in-out forwards;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg) rotateX(10deg); }
+            50% { transform: rotateY(180deg) rotateX(-10deg); }
+            100% { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes loadProgress {
+            to { width: 100%; }
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        /* Parallax Background Effect */
+        .hero-bg-parallax {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./img/bag5.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #ffffff;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            position: relative;
+            padding: 1rem 2rem;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 20px;
+            opacity: 0.7;
+            animation: scroll-animation 1.5s infinite;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: move-dot 1.5s infinite;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes scroll-animation {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes move-dot {
+            0% { top: 10px; opacity: 0; }
+            50% { top: 20px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+
+        /* Fade In Animations */
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <canvas id="particle-canvas"></canvas>
+        <div class="loader-container">
+            <div class="loader-logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="50,10 90,50 50,90 10,50" fill="url(#grad)" stroke="white" stroke-width="3" />
+                </svg>
+            </div>
+            <div class="loader-text">LOADING</div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <button class="mobile-menu-toggle">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </button>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="#offers" class="nav-link">Offers</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#cta" class="nav-link">CTA</a></li>
+            </ul>
+
+            <div>
+                <header>Ome's collection</header>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-parallax"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to OME'S COLLECTION</h1>
+            <p class="hero-tagline">Discover Quality Fashion and Essentials for Men and Women</p>
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="about-title">About OME'S COLLECTION</h2>
+                    <div class="title-underline"></div>
+                    <p class="about-description">Welcome to OME'S COLLECTION, where we bring elegance and quality to every aspect of your life. Located in the vibrant neighborhood of Hausawa Sabon Titi, Kano, we pride ourselves on offering a premium selection of fashion and essentials for both men and women.</p>
+                    <p class="about-details">From exquisite Women Abaya and Ankara Fabrics to stylish shoes, trendy bags, and top-quality men's clothing, we cater to your every need. Our collection also includes fresh food stuffs, high-quality sewing materials, and essential fashion accessories, ensuring you find everything you need under one roof.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">🛍️</div>
+                            <h3>Premium Quality</h3>
+                            <p>Carefully curated selection of high-quality products</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">⭐</div>
+                            <h3>Customer First</h3>
+                            <p>Dedicated to exceptional customer service</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">📍</div>
+                            <h3>Local Presence</h3>
+                            <p>Conveniently located in Hausawa Sabon Titi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-container">
+                        <div class="image-placeholder">
+                            <!-- Placeholder for store image -->
+                            <div class="placeholder-text">Store Image</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="products-container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Our Collections</h2>
+                <div class="category-filter">
+                    <select id="categorySelect" class="category-select">
+                        <option value="all">All Categories</option>
+                        <option value="abaya">Women Abaya</option>
+                        <option value="ankara">Ankara Fabrics</option>
+                        <option value="shoes">Shoes & Bags</option>
+                        <option value="mens">Men's Clothing</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="food">Food Stuffs</option>
+                        <option value="sewing">Sewing Materials</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Categories Grid -->
+            <div class="categories-grid">
+                <!-- Category Cards -->
+                <div class="category-card" data-category="abaya">
+                    <div class="category-icon">👗</div>
+                    <h3>Women Abaya</h3>
+                    <p>Elegant abayas for every occasion</p>
+                </div>
+                <div class="category-card" data-category="ankara">
+                    <div class="category-icon">🎭</div>
+                    <h3>Ankara Fabrics</h3>
+                    <p>Vibrant patterns and premium quality</p>
+                </div>
+                <div class="category-card" data-category="shoes">
+                    <div class="category-icon">👠</div>
+                    <h3>Shoes & Bags</h3>
+                    <p>Stylish accessories for your wardrobe</p>
+                </div>
+                <div class="category-card" data-category="mens">
+                    <div class="category-icon">👔</div>
+                    <h3>Men's Clothing</h3>
+                    <p>Contemporary men's fashion</p>
+                </div>
+                <!-- More category cards... -->
+            </div>
+    
+            <!-- Featured Products -->
+            <div class="featured-products">
+                <h3 class="featured-title">Featured Products</h3>
+                <div class="products-grid">
+                    <!-- Product Cards -->
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <div class="product-image-carousel">
+                                <img src="./img/shoe1.jpg" alt="Shoe 1" class="product-image">
+                                <img src="./img/shoe2.jpg" alt="Shoe 2" class="product-image">
+                                <img src="./img/shoe3.jpg" alt="Shoe 3" class="product-image">
+                                <img src="./img/shoe4.jpg" alt="Shoe 4" class="product-image">
+                            </div>
+                            
+                            <div class="image-indicators">
+                                <div class="image-indicator active" data-slide="0"></div>
+                                <div class="image-indicator" data-slide="1"></div>
+                                <div class="image-indicator" data-slide="2"></div>
+                                <div class="image-indicator" data-slide="3"></div>
+                            </div>
+            
+                            <div id="lottie-heart-1" class="lottie-heart"></div>
+            
+                            <div class="quick-actions">
+                                <button class="view-details">View Details</button>
+                                <button class="add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h4>Timeless Footwear Collection</h4>
+                                <div class="star-rating">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star">★</span>
+                                    <span class="rating-count">(124)</span>
+                                </div>
+                            </div>
+                            <p class="price">From only <span class="price-highlight">₦10,000</span></p>
+                            <p class="description">Elevate your style with our versatile footwear collection. From sporty sneakers to elegant shoes, we offer comfort and fashion for every occasion..</p>
+                            <div class="product-badges">
+                                <span class="badge new-arrival">New Arrival</span>
+                                <span class="badge free-shipping">Durable</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <div class="product-image-carousel">
+                                <img src="./img/abaya1.jpg" alt="Abaya 1" class="product-image">
+                                <img src="./img/abaya2.jpg" alt="Abaya 2" class="product-image">
+                                <img src="./img/abaya3.jpg" alt="Abaya 3" class="product-image">
+                                <img src="./img/abaya4.jpg" alt="Abaya 4" class="product-image">
+                                <img src="./img/abaya5.jpg" alt="Abaya 5" class="product-image">
+                                <img src="./img/abaya6.jpg" alt="Abaya 6" class="product-image">
+                                <img src="./img/abaya7.jpg" alt="Abaya 7" class="product-image">
+                            </div>
+                            
+                            <div class="image-indicators">
+                                <div class="image-indicator active" data-slide="0"></div>
+                                <div class="image-indicator" data-slide="1"></div>
+                                <div class="image-indicator" data-slide="2"></div>
+                                <div class="image-indicator" data-slide="3"></div>
+                                <div class="image-indicator" data-slide="4"></div>
+                                <div class="image-indicator" data-slide="5"></div>
+                                <div class="image-indicator" data-slide="6"></div>
+                            </div>
+            
+                            <div id="lottie-heart-1" class="lottie-heart"></div>
+            
+                            <div class="quick-actions">
+                                <button class="view-details">View Details</button>
+                                <button class="add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h4>Exquisite Abaya Collection</h4>
+                                <div class="star-rating">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="rating-count">(89)</span>
+                                </div>
+                            </div>
+                            <p class="price">For as low as <span class="price-highlight">₦10,000</span></p>
+                            <p class="description">Embrace tradition and modern elegance with our curated Abaya collection. Crafted for grace and sophistication, perfect for both everyday and special moments.</p>
+                            <div class="product-badges">
+                                <span class="badge best-seller">Best Seller</span>
+                                <span class="badge discount">Top Rated</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <div class="product-image-carousel">
+                                <img src="./img/bag1.jpg" alt="Bag 1" class="product-image">
+                                <img src="./img/bag2.jpg" alt="Bag 2" class="product-image">
+                                <img src="./img/bag3.jpg" alt="Bag 3" class="product-image">
+                                <img src="./img/bag4.jpg" alt="Bag 4" class="product-image">
+                                <img src="./img/bag5.jpg" alt="Bag 5" class="product-image">
+                                <img src="./img/bag6.jpg" alt="Bag 6" class="product-image">
+                            </div>
+                            
+                            <div class="image-indicators">
+                                <div class="image-indicator active" data-slide="0"></div>
+                                <div class="image-indicator" data-slide="1"></div>
+                                <div class="image-indicator" data-slide="2"></div>
+                                <div class="image-indicator" data-slide="3"></div>
+                                <div class="image-indicator" data-slide="4"></div>
+                                <div class="image-indicator" data-slide="5"></div>
+                            </div>
+            
+                            <div id="lottie-heart-1" class="lottie-heart"></div>
+            
+                            <div class="quick-actions">
+                                <button class="view-details">View Details</button>
+                                <button class="add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h4>Elegant Handbag Collection</h4>
+                                <div class="star-rating">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="rating-count">(72)</span>
+                                </div>
+                            </div>
+                            <p class="price">For as low as <span class="price-highlight">₦7,500</span></p>
+                            <p class="description">Discover versatile and stylish handbags for every occasion. From totes to clutches, our collection blends functionality with timeless elegance.</p>
+                            <div class="product-badges">
+                                <span class="badge best-seller">Limited Edition</span>
+                                <span class="badge discount">Bundle Deal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <div class="product-image-carousel">
+                                <img src="./img/material1.jpg" alt="Material 1" class="product-image">
+                                <img src="./img/material2.jpg" alt="Material 2" class="product-image">
+                                <img src="./img/material3.jpg" alt="Material 3" class="product-image">
+                                <img src="./img/material4.jpg" alt="Material 4" class="product-image">
+                                <img src="./img/material5.jpg" alt="Material 5" class="product-image">
+                                <img src="./img/material6.jpg" alt="Material 6" class="product-image">
+                                <img src="./img/material7.jpg" alt="Material 7" class="product-image">
+                                <img src="./img/material8.jpg" alt="Material 8" class="product-image">
+                                <img src="./img/material9.jpg" alt="Material 9" class="product-image">
+                                <img src="./img/material10.jpg" alt="Material 10" class="product-image">
+                            </div>
+                            
+                            <div class="image-indicators">
+                                <div class="image-indicator active" data-slide="0"></div>
+                                <div class="image-indicator" data-slide="1"></div>
+                                <div class="image-indicator" data-slide="2"></div>
+                                <div class="image-indicator" data-slide="3"></div>
+                                <div class="image-indicator" data-slide="4"></div>
+                                <div class="image-indicator" data-slide="5"></div>
+                                <div class="image-indicator" data-slide="6"></div>
+                                <div class="image-indicator" data-slide="7"></div>
+                                <div class="image-indicator" data-slide="8"></div>
+                                <div class="image-indicator" data-slide="9"></div>
+                            </div>
+            
+                            <div id="lottie-heart-1" class="lottie-heart"></div>
+            
+                            <div class="quick-actions">
+                                <button class="view-details">View Details</button>
+                                <button class="add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h4>Vibrant Ankara Fabric Collection:</h4>
+                                <div class="star-rating">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="rating-count">(103)</span>
+                                </div>
+                            </div>
+                            <p class="price">For as low as <span class="price-highlight">₦5,850</span></p>
+                            <p class="description">Celebrate African artistry with our bold and vibrant Ankara fabrics. Versatile designs that bring color and culture to any outfit or creative project.</p>
+                            <div class="product-badges">
+                                <span class="badge best-seller">Customer Favourite</span>
+                                <span class="badge discount">Best Seller</span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- More product cards... -->
+                </div>
+            </div>
+    
+            <!-- CTA Section -->
+            <div class="products-cta" style="display: none;">
+                <a href="./products.html" class="cta-button">Explore All Products</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Special Offer Section -->
+    <section class="special-offers" id="offers" style="display: none;">
+        <div class="offers-container">
+            <!-- Section Header -->
+            <div class="offers-header">
+                <h2>Special Offers</h2>
+                <p>Don't miss out on our amazing deals!</p>
+            </div>
+    
+            <!-- Featured Deal -->
+            <div class="featured-deal">
+                <div class="deal-timer">
+                    <div class="timer-container">
+                        <div class="timer-value" id="days">00</div>
+                        <div class="timer-label">Days</div>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-container">
+                        <div class="timer-value" id="hours">00</div>
+                        <div class="timer-label">Hours</div>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-container">
+                        <div class="timer-value" id="minutes">00</div>
+                        <div class="timer-label">Minutes</div>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-container">
+                        <div class="timer-value" id="seconds">00</div>
+                        <div class="timer-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Offers Grid -->
+            <div class="offers-grid">
+                <!-- Offer Card 1 -->
+                <div class="offer-card">
+                    <div class="discount-badge">50% OFF</div>
+                    <div class="offer-image">
+                        <div class="image-placeholder pulse"></div>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Premium Abaya Collection</h3>
+                        <p class="offer-description">Exclusive designs at unbeatable prices</p>
+                        <div class="price-container">
+                            <span class="original-price">₦50,000</span>
+                            <span class="discounted-price">₦25,000</span>
+                        </div>
+                        <div class="stock-status">
+                            <div class="stock-bar">
+                                <div class="stock-progress" style="width: 35%"></div>
+                            </div>
+                            <p class="stock-text">Hurry! Only 7 items left</p>
+                        </div>
+                        <button class="grab-deal-btn">Grab the Deal</button>
+                    </div>
+                </div>
+    
+                <!-- Offer Card 2 -->
+                <div class="offer-card">
+                    <div class="discount-badge">30% OFF</div>
+                    <div class="offer-image">
+                        <div class="image-placeholder pulse"></div>
+                    </div>
+                    <div class="offer-content">
+                        <h3>Ankara Fabric Bundle</h3>
+                        <p class="offer-description">Buy 3 Get 1 Free</p>
+                        <div class="price-container">
+                            <span class="original-price">₦30,000</span>
+                            <span class="discounted-price">₦21,000</span>
+                        </div>
+                        <div class="stock-status">
+                            <div class="stock-bar">
+                                <div class="stock-progress" style="width: 60%"></div>
+                            </div>
+                            <p class="stock-text">Hurry! Only 12 items left</p>
+                        </div>
+                        <button class="grab-deal-btn">Grab the Deal</button>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Flash Sale Banner -->
+            <div class="flash-sale-banner">
+                <div class="banner-content">
+                    <h3>Flash Sale! Extra 20% Off</h3>
+                    <p>Use code: FLASH20</p>
+                    <button class="shop-now-btn">Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <!-- Section Header -->
+            <div class="contact-header">
+                <h2>Contact Us</h2>
+                <p>We're here to help! Reach out through any of these channels</p>
+            </div>
+    
+            <div class="contact-content">
+                <!-- Contact Details Column -->
+                <div class="contact-details">
+                    <!-- WhatsApp -->
+                    <div class="contact-item whatsapp-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>WhatsApp</h3>
+                            <a href="https://wa.me/+2348051287015?text=Hello!%20I'm%20interested%20in%20learning%20more%20about%20your%20products/services."
+                               class="whatsapp-link"
+                               target="_blank">
+                                +234 805 128 7015
+                            </a>
+                        </div>
+                    </div>
+    
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Email</h3>
+                            <a href="mailto:info@yourstore.com">omeneke426@gmail.com</a>
+                        </div>
+                    </div>
+    
+                    <!-- Address -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Location</h3>
+                            <p>Hausawa Sabon Titi, Kano, Nigeria</p>
+                        </div>
+                    </div>
+    
+                    <!-- Business Hours -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Business Hours</h3>
+                            <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
+                            <p>Sunday: 10:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+    
+                    <!-- Social Media Links -->
+                    <div class="social-links">
+                        <h3>Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="#" target="_blank" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" target="_blank" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" target="_blank" class="social-icon tiktok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Map Column -->
+                <div class="map-container">
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.1021520744366!2d8.536426399999998!3d11.9674289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x11ae81c779fa9af1%3A0xe176bde210389d26!2sHausawa%20Sabon%20Titi%2C%20Kano%20700101%2C%20Kano!5e0!3m2!1sen!2sng!4v1733533183602!5m2!1sen!2sng" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- WhatsApp CTA Button -->
+            <div class="whatsapp-cta">
+                <a href="https://wa.me/+2348051287015" target="_blank" class="whatsapp-button">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat with Us on WhatsApp
+                </a>
+            </div>
+        </div>
+    
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/+2348051287015" target="_blank" class="floating-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="whatsapp-cta-section" id="cta">
+        <div class="cta-container">
+            <!-- Left Column - Animation -->
+            <div class="cta-animation">
+                <div class="lottie-container" id="whatsappAnimation"></div>
+            </div>
+    
+            <!-- Right Column - Content -->
+            <div class="cta-content">
+                <h2 class="cta-title">Stay in the Loop!</h2>
+                <p class="cta-subtitle">Get Exclusive Updates & Offers via WhatsApp</p>
+               
+                <div class="cta-description">
+                    <p>🔔 Save our number to view our WhatsApp Status updates</p>
+                    <p>🎉 Be the first to know about new arrivals</p>
+                    <p>💰 Receive exclusive deals and promotions</p>
+                </div>
+    
+                <div class="whatsapp-number">
+                    <span class="number-label">Our WhatsApp:</span>
+                    <span class="number">+234 805 128 7015</span>
+                    <button class="copy-button" onclick="copyNumber()">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+    
+                <div class="cta-buttons">
+                    <a href="https://wa.me/+2348051287015?text=Hello!%20I've%20added%20your%20number%20to%20my%20contacts%20for%20updates%20on%20your%20products.%20Looking%20forward%20to%20staying%20connected!"
+                       target="_blank"
+                       class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i>
+                        Add Us on WhatsApp
+                    </a>
+                </div>
+    
+                <div class="instructions">
+                    <p>👉 Save our number and message us "START" to begin receiving updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer" id="footer">
+        <!-- Wave SVG Background -->
+        <div class="footer-wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="#25D366" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    
+        <div class="footer-content">
+            <!-- Main Footer Grid -->
+            <div class="footer-grid">
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <nav class="footer-nav">
+                        <div class="nav-column">
+                            <a href="#home">Home</a>
+                            <a href="#about">About</a>
+                            <a href="#products">Products</a>
+                        </div>
+                        <div class="nav-column">
+                            <a href="#offers">Special Offers</a>
+                            <a href="#contact">Contact</a>
+                            <a href="#cta">Subscribe</a>
+                        </div>
+                    </nav>
+                </div>
+    
+                <!-- Contact Information -->
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <a href="https://wa.me/+2348051287015" class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>+234 805 128 7015</span>
+                        </a>
+                        <a href="https://maps.google.com" target="_blank" class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Hausawa Sabon Titi, Kano, Nigeria</span>
+                        </a>
+                        <a href="mailto:info@example.com" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>omeneke426@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Social Media -->
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon tiktok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2024 codexcreations. All Rights Reserved.
+                </div>
+                <div class="legal-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <span class="separator">|</span>
+                    <a href="#terms">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+
+        // Preloader and Animation Logic
+                // Particle Animation
+        class ParticleAnimation {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.setup();
+            }
+
+            setup() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                this.generateParticles(150);
+                this.animate();
+            }
+
+            generateParticles(count) {
+                for (let i = 0; i < count; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        radius: Math.random() * 3 + 1,
+                        speedX: (Math.random() - 0.5) * 2,
+                        speedY: (Math.random() - 0.5) * 2,
+                        color: `rgba(79, 175, 254, ${Math.random() * 0.5 + 0.3})`
+                    });
+                }
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.particles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+
+                    // Bounce off walls
+                    if (p.x < 0 || p.x > this.canvas.width) p.speedX *= -1;
+                    if (p.y < 0 || p.y > this.canvas.height) p.speedY *= -1;
+
+                    // Draw particle
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = p.color;
+                    this.ctx.fill();
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const preloader = document.querySelector('.preloader');
+            const particleCanvas = document.getElementById('particle-canvas');
+            new ParticleAnimation(particleCanvas);
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        document.querySelector("body").style.overflow = "visible";
+                        document.querySelector("html").style.overflow = "visible";
+                        // Add your post-load animations here
+                    }, 600);
+                }, 1000); // Extended to 2 seconds for a smoother experience
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.querySelector('.hero-section');
+            const heroBgParallax = document.querySelector('.hero-bg-parallax');
+            const heroTitle = document.querySelector('.hero-title');
+            const heroTagline = document.querySelector('.hero-tagline');
+            const ctaButton = document.querySelector('.cta-button');
+
+            // Parallax Background Effect
+            window.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth) * 20 - 10;
+                const y = (e.clientY / window.innerHeight) * 20 - 10;
+                heroBgParallax.style.transform = `scale(1.1) translate(${-x}px, ${-y}px)`;
+            });
+
+            // Text and Button Animations
+            setTimeout(() => {
+                heroTitle.classList.add('fade-in');
+                heroTagline.classList.add('fade-in');
+                ctaButton.classList.add('fade-in');
+            }, 300);
+
+            // Typing Effect (Optional)
+            function typeWriter(element, text, speed = 200) {
+                element.textContent = '';
+                let i = 0;
+                function typing() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typing, speed);
+                    }
+                }
+                typing();
+            }
+
+            // Uncomment and adjust if you want typing effect
+            typeWriter(heroTitle, heroTitle.textContent);
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
