@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Happy Birthday! 🎂</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+
+    <!-- Open Graph Meta Tags for WhatsApp and other platforms -->
+    <meta property="og:title" content="🎉 Happy Birthday, Big sis! 🎂">
+    <meta property="og:description" content="May Allah grant you long life, Good Health, some more texts... i dunno what else to write! ">
+    <meta property="og:image" content="https://example.com/path-to-birthday-image.jpg">
+    <meta property="og:url" content="https://example.com/happy-birthday-khalima">
+    <meta property="og:type" content="website">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #FF69B4;
+            --secondary-color: #FFD700;
+            --accent-color: #FF1493;
+            --text-color: #FFF;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #FF69B4, #FFD700, #FF1493, #9400D3);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            font-family: 'Fredoka One', cursive;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .main-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .birthday-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate3d(1, 1, 1, 0deg);
+            font-size: 5em;
+            font-family: 'Pacifico', cursive;
+            color: var(--text-color);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5),
+                         0 0 20px rgba(255,105,180,0.5),
+                         0 0 30px rgba(255,20,147,0.5);
+            white-space: wrap;
+            animation: textFloat 3s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes textFloat {
+            0%, 100% { transform: translate(-50%, -50%) rotate3d(1, 1, 1, 0deg); }
+            50% { transform: translate(-50%, -60%) rotate3d(1, 1, 1, 5deg); }
+        }
+
+        .balloon {
+            position: absolute;
+            width: 120px;
+            height: 145px;
+            animation: balloonFloat 6s ease-in-out infinite;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
+            animation: balloonShine 3s ease-in-out infinite;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 60px;
+            background: rgba(255,255,255,0.5);
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes balloonFloat {
+            0%, 100% { transform: translateY(0) rotate(3deg); }
+            50% { transform: translateY(-30px) rotate(-3deg); }
+        }
+
+        @keyframes balloonShine {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+
+        .confetti-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--secondary-color);
+            animation: confettiFall 4s ease-in-out infinite;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-100%) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(720deg); }
+        }
+
+        .glitter {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: glitterSparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes glitterSparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .cake-container {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            animation: cakeBounce 2s ease-in-out infinite;
+        }
+
+        .cake {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: cakeRotate 20s linear infinite;
+        }
+
+        @keyframes cakeBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+
+        @keyframes cakeRotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .gift {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            border-radius: 10px;
+            animation: giftShake 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gift::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: var(--secondary-color);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .gift::after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 20px;
+            background: var(--secondary-color);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes giftShake {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .star {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid var(--secondary-color);
+            animation: starTwinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .enter-button {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 20px 40px;
+            font-size: 1.5em;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Fredoka One', cursive;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255,20,147,0.4);
+            animation: buttonPulse 2s infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+
+        .enter-button:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255,20,147,0.6);
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #FF69B4, #FFD700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: gradientBG 8s ease infinite;
+        }
+
+        .loading-text {
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: loadingPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-text">Preparing Your Birthday Surprise... 🎉</div>
+    </div>
+
+    <div class="main-container">
+        <h1 class="birthday-text">Happy Birthday Big Sis!!!</h1>
+        <div class="confetti-container"></div>
+        <div class="cake-container">
+            <div class="cake"></div>
+        </div>
+        <button class="enter-button">Visit Surprise Website! ✨</button>
+    </div>
+
+    <script>
+        // Initialize elements
+        function createConfetti() {
+            const confettiContainer = document.querySelector('.confetti-container');
+            const colors = ['#FF69B4', '#FFD700', '#FF1493', '#9400D3', '#FFF'];
+            
+            for(let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 4 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        function createBalloons() {
+            const mainContainer = document.querySelector('.main-container');
+            const colors = ['#FF69B4', '#FFD700', '#FF1493', '#9400D3'];
+            
+            for(let i = 0; i < 10; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 90 + 5 + '%';
+                balloon.style.animationDelay = Math.random() * 3 + 's';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                mainContainer.appendChild(balloon);
+            }
+        }
+
+        function createStars() {
+            const mainContainer = document.querySelector('.main-container');
+            
+            for(let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                mainContainer.appendChild(star);
+            }
+        }
+
+        function createGlitter() {
+            const mainContainer = document.querySelector('.main-container');
+            
+            for(let i = 0; i < 50; i++) {
+                const glitter = document.createElement('div');
+                glitter.className = 'glitter';
+                glitter.style.left = Math.random() * 100 + 'vw';
+                glitter.style.top = Math.random() * 100 + 'vh';
+                glitter.style.animationDelay = Math.random() * 2 + 's';
+                mainContainer.appendChild(glitter);
+            }
+        }
+
+        // Initialize page
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-screen').style.opacity = 0;
+                setTimeout(() => {
+                    document.querySelector('.loading-screen').style.display = 'none';
+                }, 1000);
+            }, 2000);
+
+            createConfetti();
+            createBalloons();
+            createStars();
+            createGlitter();
+        });
+
+        // Interactive elements
+        document.addEventListener('mousemove', (e) => {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => {
+                const speed = Math.random() * 2 + 1;
+                const x = (window.innerWidth / 2 - e.clientX) * 0.01 * speed;
+                const y = (window.innerHeight / 2 - e.clientY) * 0.01 * speed;
+                star.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Button interaction
+        document.querySelector('.enter-button').addEventListener('click', () => {
+            // Add transition to next section here
+            window.location.href = "https://codexabq.github.io/omescollection/"
+            console.log('Starting celebration!');
+        });
+
+        // Add dynamic balloon creation on click
+        document.addEventListener('click', (e) => {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = e.clientX + 'px';
+            balloon.style.top = e.clientY + 'px';
+            balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+            document.querySelector('.main-container').appendChild(balloon);
+            
+            setTimeout(() => {
+                balloon.remove();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
